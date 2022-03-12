@@ -1,0 +1,5 @@
+
+
+1. RN에서는 React와는 다르게 HTML 속 Tag 사용이 불가능
+    - 처음으로 배우게 될 Tag => <View> == <div>
+    - <Text>: Text를 적기 위해서 사용해야 하는 Tag
