@@ -4,6 +4,7 @@
     RN에서는 React와는 다르게 HTML 속 Tag 사용이 불가능
     
     1. 처음으로 배우게 될 Tag => <View> == <div>
+        - <View>는 따로 크기를 지정하지 않은 이상, 안에 있는 Component 만큼의 크기만을 차지함.
     
     2. <Text>: Text를 적기 위해서 사용해야 하는 Tag
 
@@ -28,6 +29,11 @@
 
         * StyleSheet은 잘못된 내용이 있는지 debugging을 해주는 장점이 있다.
 
+        - <View>를 지속적으로 사용하다 보면 Component 간의 차이를 인지하기 힘듬
+            - style ={{bordeWidth:1}} 경계를 나타내게 하여 확인을 하면 편함.
+            + borderColor를 이용하는 것도 도움이 됨.
+                - ex) borderColor:"red"
+
     4. <Button> => Native, 기본적인 기능을 지니고 있음, Closing Tag임.
         - IOS는 IOS의 Button, Android의 경우, 또다른 Button. (자동으로 가지고 있음 => Native Button)
         - title을 필수적으로 가져야 함.
@@ -37,7 +43,7 @@
         - resizeMode: Image의 크기를 조절하는 것.
         - 
 
-    6. <TextInput>: 생긴대로 Text 입력 받는 Tag
+    6. <TextInput>: 생긴대로 Text 입력 받는 Component
         - value: 필수, Text가 저장되는 곳
         - onChangeText: 필수, 타이핑 과정에서 하게 될 일을 적는 곳
 
@@ -57,4 +63,24 @@
 
     8. <FlatList>: <ScrollView>와 동일한 기능을 함.
         - 화면에 적용되는 부분만 로딩됨. (ScrollView의 경우, 미리 모든 것을 로딩해옴.)
+        - prop으로 {data}를 {array}형태로만 받아와야 함.
+
+    8. JSX 문법 내용 추가
+        - property spread notation
+            : 내가 이미 만들어놓은 object들의 prop을 바로 넘기고 싶은 상황에서는
+            - ex) [...prop, addedOne] 다음의 형태로 사용하면 prevProp을 가져옴과 동시에
+            추가 과정까지 완료.
+
+    9. 우리가 만든 Component를 Touch가 가능하도록 하는 Component들
+        - TouchableOpactiy
+            - Opactiy라는 이름에 맞게 Touch를 했을 때, 투명도가 살짝 변하게 됨.
+        - TouchableHighlight
+            - Touch시 해당 부분이 Highlight 처리됨.
+        - TouchableWithoutFeedback
+            - Touch시 아무 효과가 없는 것.
+
+        - TouchableNativeFeedback
+            - Android에서만 가능한 Component
+            - 누른 지점에서 퍼지는 파동 애니메이션을 사용할 수 있음.
+
         
