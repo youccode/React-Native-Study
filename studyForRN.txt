@@ -1,6 +1,6 @@
 
 
-<Day 1>
+<Day 2>
     RN에서는 React와는 다르게 HTML 속 Tag 사용이 불가능
     
     1. 처음으로 배우게 될 Tag => <View> == <div>
@@ -64,6 +64,10 @@
     8. <FlatList>: <ScrollView>와 동일한 기능을 함.
         - 화면에 적용되는 부분만 로딩됨. (ScrollView의 경우, 미리 모든 것을 로딩해옴.)
         - prop으로 {data}를 {array}형태로만 받아와야 함.
+        - style은 FlatList의 style을 정의하는 것.
+        - 내부의 content container의 style을 정하는 것은 contentContainerStyle로 정의해줘야 함.
+            - flexbox의 내용도 여기에 들어와야 함.
+            - ex) contentContainerStyle={{flexDirection:"column", alignItem:"center"}}
 
     8. JSX 문법 내용 추가
         - property spread notation
@@ -72,6 +76,7 @@
             추가 과정까지 완료.
 
     9. 우리가 만든 Component를 Touch가 가능하도록 하는 Component들
+
         - TouchableOpactiy
             - Opactiy라는 이름에 맞게 Touch를 했을 때, 투명도가 살짝 변하게 됨.
         - TouchableHighlight
@@ -83,4 +88,48 @@
             - Android에서만 가능한 Component
             - 누른 지점에서 퍼지는 파동 애니메이션을 사용할 수 있음.
 
-        
+    10. CSS 복습.
+        - Flexbox => display의 속성값으로 flex 값을 지정해주어야 사용할 수 있음.
+            - Main Axis: 주축, flex item이 배치되고 있는 방향.
+                - Main Axis를 설정해주기 위해서 flex-direction의 속성값을 지정해주어야 함.
+                    - ex) flex-direction: [ row| row-reverse | column | column-reverse ]
+                        - 다음의 방향은 flex container의 방향에 영향을 받음.
+                            - flex container의 방향은 dir 속성의 값이 지정 ltr(왼쪽부터) or rtl(오른쪽부터)
+
+            - Cross Axis: 주축에 대하여 수직인 축
+
+            - flex-wrap: flex item들이 강제적으로 한 줄에 있도록 할 것인지에 대해 결정하는 속성
+                - ex) flex-wrap: [ nowrap | wrap | wrap-reverse ]
+            
+            - flex-flow: flex-direction과 flex-wrap을 한 번에 표시하고 싶을 때 사용하는 것
+                - ex) flex-flow: row wrap;
+
+            - flex item의 크기를 조정하는 방법
+                - 내부에 flex: [비율] [최소 크기];의 형태로 적는다.
+                - flex에 들어가는 숫자는 상대적인 비율임.
+                - 최소 크기를 적게 되면, 최소 크기만큼을 할당받은 이후, 나머지 영역을 비율에 맞게 분배.
+            
+            - justify-content: 주축에 대하여 flex item들의 배열을 설정함.
+                - flex-start: 주축 기준으로 시작부터
+                - flex-end: 주축 기준으로 끝에서부터
+                - center: 가운데 정렬
+                - space-between: item들의 양끝에는 공간이 생기지 않고, item 사이에만 균일한 공간이 생김
+                - space-around: space-evenly와 거의 비슷한듯.
+                - space-evenly: item들의 사이 및 양 끝을 고려하여 균일한 간격을 만듬.
+
+            - align-items: Cross Axis에 대하여 flex 항목들의 배열 설정.
+                - stretch: 가장 큰 높이를 가진 값을 기준으로 모두 길어짐.
+                - flex-end: Cross Axis 방향을 기준으로 가장 끝부터 시작
+                - flex-start: Cross Axis 방향을 기준으로 가장 base부터 시작
+                - center: Cross Axis의 중앙으로 item들이 정렬
+                - baseline: Cross Axis를 기준으로 가장 base부터 정렬
+
+        11. SafeAreaView: 스마트폰의 navigation var로 인해서 가려지는 부분을 해소해주기 위한 Component
+            - 사용하고자 하는 부분을 <SafeAreaView></SafeAreaView>로 감싸주면 됨.
+
+        12. KeyboardAvoidingView
+            : 스마트폰에서 keyboard를 사용하게 될 때, 보이지 않게 되는 요소들을 위로 올려주는 Component
+
+            - 작동 방식이 SafeAreaView와 더불어 거지같다고 한다.
+
+        13. borderRadius: style 내부에서 사용하는 속성, border의 모서리 부분을 둥글게 만들 수 있음.

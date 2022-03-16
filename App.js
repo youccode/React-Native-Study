@@ -10,9 +10,16 @@ import {
   TouchableHighlight,
   TouchableOpacity,
   TouchableWithoutFeedback,
+  SafeAreaView,
 } from "react-native-web";
+import { TodoCard } from "./components/TodoCard";
+import { useFonts } from "expo-font";
 
 export default function App() {
+  // const [loaded] = useFonts({
+  //   customFont1: require("./assets/Dotum.ttf"),
+  // });
+
   const [text, setText] = useState("");
   const [todos, setTodos] = useState([]);
 
@@ -22,10 +29,10 @@ export default function App() {
 
   const addTodo = () => {
     console.log("추가!");
-    setTodos((prev) => {
-      return [...prev, { key: text, content: text }];
+    setTodos((prev, index) => {
+      return [...prev, { key: index, content: text }];
     });
-    console.log(todos);
+    setText("");
   };
 
   const deleteTodo = (string) => {
@@ -38,20 +45,25 @@ export default function App() {
 
   let blank = " ";
 
-  return (
-    <View style={{ padding: 30 }}>
-      {/* {버튼과, 입력창} */}
-      <View>
-        <TextInput
-          placeholder="할 일을 적으세요."
-          value={text}
-          onChangeText={handleTextChange}
-        />
-        <Button title={"추가"} onPress={addTodo} />
-      </View>
+  // if (!loaded) {
+  //   return null;
+  // }
 
-      {/* {데이터를 리스트로 제공} */}
-      {/* <ScrollView showsVerticalScrollIndicater={false}>
+  return (
+    <SafeAreaView>
+      <View style={{ padding: 30 }}>
+        {/* {버튼과, 입력창} */}
+        <View>
+          <TextInput
+            placeholder="할 일을 적으세요."
+            value={text}
+            onChangeText={handleTextChange}
+          />
+          <Button title={"추가"} onPress={addTodo} />
+        </View>
+
+        {/* {데이터를 리스트로 제공} */}
+        {/* <ScrollView showsVerticalScrollIndicater={false}>
         {todos.map((item, index) => {
           return (
             <View>
@@ -60,22 +72,26 @@ export default function App() {
           );
         })}
       </ScrollView> */}
-      <FlatList
-        data={todos}
-        renderItem={(itemData) => {
-          return (
-            <TouchableOpacity onPress={deleteTodo}>
-              <View>
-                <Text>
-                  {itemData.index}.{blank}
-                  {itemData.item.content}
-                </Text>
-              </View>
-            </TouchableOpacity>
-          );
-        }}
-      />
-    </View>
+        <FlatList
+          data={todos}
+          style={{ borderWidth: 1 }}
+          contentContainerStyle={{
+            borderWidth: 1,
+            borderColor: "red",
+            alignItems: "center",
+          }}
+          renderItem={(itemData) => {
+            return (
+              <TodoCard
+                onPress={deleteTodo}
+                index={itemData.index}
+                content={itemData.item.content}
+              />
+            );
+          }}
+        />
+      </View>
+    </SafeAreaView>
   );
 }
 
