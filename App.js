@@ -17,7 +17,7 @@ import {
 } from "react-native";
 import { TodoCard } from "./components/TodoCard";
 import { useFonts } from "expo-font";
-import { NavigationContainer } from "./Navigatior/NavigationContainer";
+import { Container } from "./Navigatior/Container";
 
 // export default function App() {
 //   // const [loaded] = useFonts({
@@ -131,7 +131,7 @@ import { NavigationContainer } from "./Navigatior/NavigationContainer";
 // }
 
 export const App = () => {
-  return <NavigationContainer />;
+  return <Container />;
 };
 
 const styles = StyleSheet.create({
