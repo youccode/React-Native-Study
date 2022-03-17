@@ -1,15 +1,30 @@
 import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Dimensions,
+  useWindowDimensions,
+  Platform,
+} from "react-native";
 
 export const TodoCard = (props) => {
   /*prop-> todo에 들어갈 내용과, 인덱스를 받으면 
     그거를 예쁘게 나타내는 카드
     터치가 가능한 component => onPress 함수를 실행해야 함.
     -> prop으로 받아와야 함.*/
+  // const width = Dimensions.get("window");
+  // const height = Dimensions.get("window");
+  // Dimensions.addEventListener()
+  const platform = Platform.OS;
+
+  const width = useWindowDimensions().width;
+  const height = useWindowDimensions().height;
 
   return (
     <TouchableOpacity onPress={props.onPress}>
-      <View style={styles.card}>
+      <View style={{ ...styles.card, height: height * 0.1 }}>
         <View>
           <Text>{props.index}</Text>
         </View>
@@ -23,8 +38,9 @@ export const TodoCard = (props) => {
 
 const styles = StyleSheet.create({
   card: {
+    backgroundColor: "white",
     height: 50,
-    width: 300,
+    width: Platform.OS === "android" ? 300 : 400,
     elevation: 1,
     shadowColor: "black",
     shadowRadius: 1,

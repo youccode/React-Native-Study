@@ -11,89 +11,128 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   SafeAreaView,
-} from "react-native-web";
+  Dimensions,
+  Platform,
+  Modal,
+} from "react-native";
 import { TodoCard } from "./components/TodoCard";
 import { useFonts } from "expo-font";
+import { NavigationContainer } from "./Navigatior/NavigationContainer";
 
-export default function App() {
-  // const [loaded] = useFonts({
-  //   customFont1: require("./assets/Dotum.ttf"),
-  // });
+// export default function App() {
+//   // const [loaded] = useFonts({
+//   //   customFont1: require("./assets/Dotum.ttf"),
+//   // });
 
-  const [text, setText] = useState("");
-  const [todos, setTodos] = useState([]);
+//   const [isModalVisible, setIsModalVisible] = useState(false);
+//   const [text, setText] = useState("");
+//   const [todos, setTodos] = useState([]);
 
-  const handleTextChange = (value) => {
-    setText(value);
-  };
+//   const handleTextChange = (value) => {
+//     setText(value);
+//   };
 
-  const addTodo = () => {
-    console.log("추가!");
-    setTodos((prev, index) => {
-      return [...prev, { key: index, content: text }];
-    });
-    setText("");
-  };
+//   const addTodo = () => {
+//     console.log("추가!");
+//     setTodos((prev) => {
+//       return [...prev, { key: text, content: text }];
+//     });
+//     setText("");
+//   };
 
-  const deleteTodo = (string) => {
-    setTodos((prev) => {
-      return prev.filter((todos) => {
-        return todos.key != string;
-      });
-    });
-  };
+//   const deleteTodo = (string) => {
+//     setTodos((prev) => {
+//       return prev.filter((todos) => {
+//         return todos.key != string;
+//       });
+//     });
+//   };
 
-  let blank = " ";
+//   let blank = " ";
 
-  // if (!loaded) {
-  //   return null;
-  // }
+//   // if (!loaded) {
+//   //   return null;
+//   // }
 
-  return (
-    <SafeAreaView>
-      <View style={{ padding: 30 }}>
-        {/* {버튼과, 입력창} */}
-        <View>
-          <TextInput
-            placeholder="할 일을 적으세요."
-            value={text}
-            onChangeText={handleTextChange}
-          />
-          <Button title={"추가"} onPress={addTodo} />
-        </View>
+//   return (
+//     <SafeAreaView>
+//       <View style={{ padding: 30 }}>
+//         {/* {버튼과, 입력창} */}
+//         <View>
+//           {/* <TextInput
+//             placeholder="할 일을 적으세요."
+//             value={text}
+//             onChangeText={handleTextChange}
+//           /> */}
+//           <Button title={"추가"} onPress={() => setIsModalVisible(true)} />
+//         </View>
 
-        {/* {데이터를 리스트로 제공} */}
-        {/* <ScrollView showsVerticalScrollIndicater={false}>
-        {todos.map((item, index) => {
-          return (
-            <View>
-              <Text key={index}>{item.content}</Text>
-            </View>
-          );
-        })}
-      </ScrollView> */}
-        <FlatList
-          data={todos}
-          style={{ borderWidth: 1 }}
-          contentContainerStyle={{
-            borderWidth: 1,
-            borderColor: "red",
-            alignItems: "center",
-          }}
-          renderItem={(itemData) => {
-            return (
-              <TodoCard
-                onPress={deleteTodo}
-                index={itemData.index}
-                content={itemData.item.content}
-              />
-            );
-          }}
-        />
-      </View>
-    </SafeAreaView>
-  );
-}
+//         {/* {데이터를 리스트로 제공} */}
+//         {/* <ScrollView showsVerticalScrollIndicater={false}>
+//         {todos.map((item, index) => {
+//           return (
+//             <View>
+//               <Text key={index}>{item.content}</Text>
+//             </View>
+//           );
+//         })}
+//       </ScrollView> */}
+//         <FlatList
+//           data={todos}
+//           style={{ borderWidth: 1 }}
+//           contentContainerStyle={{
+//             borderWidth: 1,
+//             borderColor: "red",
+//             alignItems: "center",
+//           }}
+//           renderItem={(itemData) => {
+//             return (
+//               <TodoCard
+//                 onPress={() => {
+//                   deleteTodo(itemData.item.content);
+//                 }}
+//                 index={itemData.index}
+//                 content={itemData.item.content}
+//               />
+//             );
+//           }}
+//         />
+//         {isModalVisible ? (
+//           <View
+//             style={{
+//               position: "absolute" /* default 값은 "relative"임
+//               position을 통해서 다른 component와 상관없이 고정된 장소에 띄우게 할 수 있음.*/,
+//               backgroundColor: "white",
+//               height: 600,
+//               width: 400,
+//               borderRadius: 25,
+//               elevation: 1,
+//               alignSelf: "center",
+//             }}
+//           >
+//             <TextInput
+//               placeholder="할 일을 적으세요."
+//               value={text}
+//               onChangeText={handleTextChange}
+//             />
+//             <Button
+//               title={"저장"}
+//               onPress={() => {
+//                 addTodo();
+//                 setIsModalVisible(false);
+//               }}
+//             />
+//             <Button title={"close"} onPress={() => setIsModalVisible(false)} />
+//           </View>
+//         ) : null}
+//       </View>
+//     </SafeAreaView>
+//   );
+// }
+
+export const App = () => {
+  return <NavigationContainer />;
+};
 
 const styles = StyleSheet.create({
   container: {
