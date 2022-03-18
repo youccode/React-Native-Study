@@ -1,5 +1,6 @@
 import { StatusBar } from "expo-status-bar";
-import react, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import {
   Image,
@@ -130,9 +131,9 @@ import { Container } from "./Navigatior/Container";
 //   );
 // }
 
-export const App = () => {
+export default function App() {
   return <Container />;
-};
+}
 
 const styles = StyleSheet.create({
   container: {
