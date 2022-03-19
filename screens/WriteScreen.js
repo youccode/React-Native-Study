@@ -7,8 +7,11 @@ import {
   ScrollView,
   Button,
 } from "react-native";
+import { useDispatch } from "react-redux";
+import { addTodo } from "../store/action/TodoActions";
 
 export const WriteScreen = (props) => {
+  const dispatch = useDispatch();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
@@ -29,12 +32,11 @@ export const WriteScreen = (props) => {
           <Button
             title="저장"
             onPress={() => {
-              let currentDate = new Date();
-              let id = currentDate.toISOString();
-              props.navigation.navigate({
-                name: "Main",
-                params: { id: id, title: title, content: content },
-              });
+              //Global state에다가 todo 추가.
+              const currentDate = new Date();
+
+              dispatch(addTodo(currentDate.toISOString, title, content));
+              props.navigation.navigate("Main");
             }}
           />
         );

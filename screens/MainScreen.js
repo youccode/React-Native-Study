@@ -10,26 +10,29 @@ import {
   Alert,
 } from "react-native";
 import { TodoCard } from "../components/TodoCard";
+import { useSelector } from "react-redux";
 
 export const MainScreen = (props) => {
   const width = useWindowDimensions().width;
   const height = useWindowDimensions().height;
-  const [todos, setTodos] = useState([]);
+  const todos = useSelector((state) => state.todo.todo);
 
-  useEffect(() => {
-    if (props.route.params?.id) {
-      const newItem = props.route.params;
-      setTodos((prev) => {
-        let exId = prev.findIndex((elem) => elem.id === newItem.id);
-        if (exId != -1) {
-          let newState = [...prev];
-          newState[exId] = newItem;
-          return newState;
-        }
-        return [newItem, ...prev];
-      });
-    }
-  }, [props.route.params?.id]);
+  //const [todos, setTodos] = useState([]);
+
+  // useEffect(() => {
+  //   if (props.route.params?.id) {
+  //     const newItem = props.route.params;
+  //     setTodos((prev) => {
+  //       let exId = prev.findIndex((elem) => elem.id === newItem.id);
+  //       if (exId != -1) {
+  //         let newState = [...prev];
+  //         newState[exId] = newItem;
+  //         return newState;
+  //       }
+  //       return [newItem, ...prev];
+  //     });
+  //   }
+  // }, [props.route.params?.id]);
 
   const addTodo = () => {
     //쓰기 화면으로 이동
