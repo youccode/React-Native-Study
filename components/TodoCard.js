@@ -24,12 +24,9 @@ export const TodoCard = (props) => {
 
   return (
     <TouchableOpacity onPress={props.onPress}>
-      <View style={{ ...styles.card, height: height * 0.1 }}>
+      <View style={styles.card}>
         <View>
-          <Text>{props.index}</Text>
-        </View>
-        <View>
-          <Text>{props.content}</Text>
+          <Text>{props.title}</Text>
         </View>
       </View>
     </TouchableOpacity>
@@ -40,7 +37,7 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: "white",
     height: 50,
-    width: Platform.OS === "android" ? 300 : 400,
+    width: 320,
     elevation: 1,
     shadowColor: "black",
     shadowRadius: 1,
@@ -49,5 +46,6 @@ const styles = StyleSheet.create({
     marginTop: 5,
     alignItems: "center",
     flex: 1,
+    justifyContent: "center",
   },
 });

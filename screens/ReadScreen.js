@@ -7,19 +7,24 @@ export const ReadScreen = (props) => {
   useEffect(() => {
     props.navigation.setOptions({
       headerRight: () => {
-        return <Button title="수정하기" onPress={console.log("hi")} />;
+        return <Button title="수정하기" onPress={edit} />;
       },
     });
   });
   const edit = () => {
-    props.navigation.navigate("Write", param);
+    props.navigation.navigate("Edit", param);
   };
 
   return (
-    <View>
-      <Text>{"읽기화면"}</Text>
-      <Text>제목: {param.title}</Text>
-      <Text>내용:{param.content}</Text>
+    <View
+      style={{
+        backgroundColor: "white",
+        flex: 1,
+        alignItems: "center",
+        padding: 30,
+      }}
+    >
+      <Text style={{ fontSize: 15, fontStyle: "italic" }}>{param.content}</Text>
     </View>
   );
 };

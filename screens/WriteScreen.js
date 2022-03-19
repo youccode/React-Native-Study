@@ -14,30 +14,33 @@ export const WriteScreen = (props) => {
 
   useEffect(() => {
     props.navigation.setOptions({
-      headerLeft: () => (
-        <Button
-          title="작성취소"
-          onPress={() => {
-            props.navigation.navigate("Main");
-          }}
-        />
-      ),
-      headerRight: () => (
-        <Button
-          title="저장"
-          onPress={() => {
-            let currentDate = new Date();
-            let id = currentDate.toTimeString;
-            props.navigation.navigate("Main", {
-              id: id,
-              title: title,
-              content: content,
-            });
-          }}
-        />
-      ),
+      headerLeft: () => {
+        return (
+          <Button
+            title="작성취소"
+            onPress={() => {
+              props.navigation.navigate("Main");
+            }}
+          />
+        );
+      },
+      headerRight: () => {
+        return (
+          <Button
+            title="저장"
+            onPress={() => {
+              let currentDate = new Date();
+              let id = currentDate.toISOString();
+              props.navigation.navigate({
+                name: "Main",
+                params: { id: id, title: title, content: content },
+              });
+            }}
+          />
+        );
+      },
     });
-  });
+  }, [title, content]);
 
   return (
     <View style={styles.main}>
