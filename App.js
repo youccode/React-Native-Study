@@ -19,15 +19,16 @@ import {
 import { TodoCard } from "./components/TodoCard";
 import { useFonts } from "expo-font";
 import { Container } from "./Navigatior/Container";
-import { createStore, combineReducers } from "redux";
+import { createStore, combineReducers, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import { TodoReducer } from "./store/reducer/TodoReducer";
+import ReduxThunk from "redux-thunk";
 
 export default function App() {
   const rootReducer = combineReducers({
     todo: TodoReducer,
   });
-  const store = createStore(rootReducer);
+  const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
 
   return (
     <Provider store={store}>

@@ -7,10 +7,13 @@ import {
   ScrollView,
   Button,
 } from "react-native";
+import { useDispatch } from "react-redux";
+import { editTodo } from "../store/action/TodoActions";
 
 export const EditScreen = (props) => {
   const [title, setTitle] = useState(props.route.params.title);
   const [content, setContent] = useState(props.route.params.content);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     props.navigation.setOptions({
@@ -31,10 +34,8 @@ export const EditScreen = (props) => {
             onPress={() => {
               //let currentDate = new Date();
               let id = props.route.params.id;
-              props.navigation.navigate({
-                name: "Main",
-                params: { id: id, title: title, content: content },
-              });
+              dispatch(editTodo(id, title, content));
+              props.navigation.navigate("Main");
             }}
           />
         );
