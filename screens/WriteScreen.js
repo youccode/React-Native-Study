@@ -35,7 +35,7 @@ export const WriteScreen = (props) => {
               //Global state에다가 todo 추가.
               const currentDate = new Date();
 
-              dispatch(addTodo(currentDate.toISOString, title, content));
+              dispatch(addTodo(title, content));
               props.navigation.navigate("Main");
             }}
           />

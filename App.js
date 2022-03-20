@@ -23,10 +23,12 @@ import { createStore, combineReducers, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import { TodoReducer } from "./store/reducer/TodoReducer";
 import ReduxThunk from "redux-thunk";
+import { AuthReducer } from "./store/reducer/AuthReducer";
 
 export default function App() {
   const rootReducer = combineReducers({
     todo: TodoReducer,
+    auth: AuthReducer,
   });
   const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
 

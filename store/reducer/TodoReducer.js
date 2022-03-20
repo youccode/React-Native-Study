@@ -1,4 +1,4 @@
-import { ADD_TODO, EDIT_TODO } from "../action/TodoActions";
+import { ADD_TODO, EDIT_TODO, FETCH_TODO } from "../action/TodoActions";
 
 const initialState = {
   todo: [],
@@ -40,6 +40,9 @@ export const TodoReducer = (state = initialState, action) => {
       };
 
       return { ...state, todo: editedArr };
+
+    case FETCH_TODO:
+      return { ...state, todo: action.todo };
     default:
       return state;
   }

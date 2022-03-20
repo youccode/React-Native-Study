@@ -10,13 +10,18 @@ import {
   Alert,
 } from "react-native";
 import { TodoCard } from "../components/TodoCard";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchTODO } from "../store/action/TodoActions";
 
 export const MainScreen = (props) => {
   const width = useWindowDimensions().width;
   const height = useWindowDimensions().height;
   const todos = useSelector((state) => state.todo.todo);
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(fetchTODO());
+  }, []);
   //const [todos, setTodos] = useState([]);
 
   // useEffect(() => {
